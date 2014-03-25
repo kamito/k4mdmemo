@@ -1,5 +1,11 @@
 require "k4mdmemo/version"
+require "active_support/core_ext"
+require "active_support/dependencies"
+
+ActiveSupport::Dependencies.autoload_paths << File.dirname(__FILE__)
 
 module K4mdmemo
-  # Your code goes here...
+  extend ActiveSupport::Autoload
+  autoload :Error
+  autoload :Command
 end

@@ -5,7 +5,7 @@ require 'k4mdmemo/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "k4mdmemo"
-  spec.version       = Mymdmemo::VERSION
+  spec.version       = K4mdmemo::VERSION
   spec.authors       = ["Shinichirow KAMITO"]
   spec.email         = ["updoor@gmail.com"]
   spec.summary       = %q{My memo by Markdown.}
@@ -19,7 +19,9 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency 'redcarpet'
-  spec.add_dependency "rake"
+  spec.add_dependency 'i18n'
+  spec.add_dependency 'active_support'
 
   spec.add_development_dependency "bundler", "~> 1.5"
+  spec.add_development_dependency "rake"
 end
