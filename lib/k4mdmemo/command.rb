@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 
 require 'erb'
 
@@ -51,6 +52,12 @@ module K4mdmemo
       end
 
       message("Created new file: #{filename}.")
+    end
+
+    # Listen server.
+    # @param
+    def exec_server(*args)
+      K4mdmemo::Server.rackup(args)
     end
 
     # Show help

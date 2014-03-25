@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>/</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+  </head>
+  <body>
+    <div id="contents">
+      <h1>/</h1>
+      <dl>
+        <% if @files %>
+          <% @files.each do |file| %>
+            <% filename = File.basename(file, ".md") %>
+            <dt><a href="/<%= filename %>"><%= filename %></a></dt>
+          <% end %>
+        <% end %>
+      </dl>
+    </div>
+  </body>
+</html>

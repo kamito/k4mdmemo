@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 module K4mdmemo
 
   DEFAULT_ERROR_MESSAGE = "Error"

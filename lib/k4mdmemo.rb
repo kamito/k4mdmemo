@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 require "k4mdmemo/version"
 require "active_support/core_ext"
 require "active_support/dependencies"
@@ -8,4 +10,5 @@ module K4mdmemo
   extend ActiveSupport::Autoload
   autoload :Error
   autoload :Command
+  autoload :Server
 end
