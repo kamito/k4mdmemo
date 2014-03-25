@@ -11,4 +11,5 @@ module K4mdmemo
   autoload :Error
   autoload :Command
   autoload :Server
+  autoload :MarkdownRenderer
 end

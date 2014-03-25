@@ -141,7 +141,7 @@ module K4mdmemo
       render_options = {
         prettify: true,
       }
-      renderer = ::Redcarpet::Render::HTML.new(render_options)
+      renderer = MarkdownRenderer.new(render_options)
       extensions = {
         autolink: true,
         tables: true,
