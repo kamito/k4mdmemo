@@ -9,9 +9,13 @@
       <h1>/</h1>
       <dl>
         <% if @files %>
-          <% @files.each do |file| %>
-            <% filename = File.basename(file, ".md") %>
-            <dt><a href="/<%= filename %>"><%= filename %></a></dt>
+          <% @files.each do |f| %>
+            <dt>
+              <a href="/<%= f[:id] %>">
+                <%= f[:id] %>
+                <% if f[:title] %>::&nbsp;<%= f[:title] %><% end %>
+              </a>
+            </dt>
           <% end %>
         <% end %>
       </dl>

@@ -99,10 +99,23 @@ module K4mdmemo
     # @param [MatchData|nil] matched URL matched.
     # @return [Rack::Response]
     def get_index(request, matched=nil)
-      path = File.join(Dir.pwd, "*.md")
+      root = Dir.pwd
+      path = File.join(root, "*.md")
 
       # bindings
-      @files = Dir.glob(path)
+      @files = Dir.glob(path).map do |file|
+        dat = {
+          id: File.basename(file, ".md"),
+          name: File.basename(file),
+          path: file,
+        }
+        File.open(file) do |f|
+          title = f.gets
+          title = title.gsub(/^\#\s+/, "").gsub(/\s+\#$/, "")
+          dat[:title] = title
+        end
+        dat
+      end
 
       src = File.read(make_template_path("index.html.erb"))
       erb = ERB.new(src)
