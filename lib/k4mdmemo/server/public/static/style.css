@@ -10,6 +10,15 @@ div#contents {
     margin-bottom: 100px;
 }
 
+ul > li.task-item {
+    list-style-type: none;
+}
+
+ul > li > input[type="checkbox"]{
+    float: left;
+    margin-left: -20px;
+}
+
 pre {
     padding: 6px 10px;
     border-radius: 3px;
