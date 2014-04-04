@@ -100,12 +100,14 @@ module K4mdmemo
     # @return [Rack::Response]
     def get_index(request, matched=nil)
       root = Dir.pwd
-      path = File.join(root, "*.md")
+      path = File.join(root, "*/*.md")
 
       # bindings
       @files = Dir.glob(path).map do |file|
+        file_id = file.gsub(root, "")
+        file_id = file_id.gsub(/\.md$/, "").gsub(/^\//, "")
         dat = {
-          id: File.basename(file, ".md"),
+          id: file_id,
           name: File.basename(file),
           path: file,
         }
