@@ -159,6 +159,7 @@ module K4mdmemo
       }
       renderer = MarkdownRenderer.new(render_options)
       extensions = {
+        no_intra_emphasis: true,
         autolink: true,
         tables: true,
         fenced_code_blocks: true,
