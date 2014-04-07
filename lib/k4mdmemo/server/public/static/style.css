@@ -44,3 +44,17 @@ pre > code{
     line-height: 19px;
     overflow: auto;
 }
+
+table {
+    border-collapse: collapse;
+}
+table > thead > tr > th, table > tbody > tr > td {
+    border: 1px solid #DDDDDD;
+    padding: 4px 6px;
+    font-size: 11pt;
+}
+table > thead > tr > th {
+    text: align: center;
+    background-color: #F8F8F8;
+}
+
