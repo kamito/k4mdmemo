@@ -12,9 +12,11 @@
           <% @files.each do |f| %>
             <dt>
               <a href="/<%= f[:id] %>">
-                <%= f[:id] %>
-                <% if f[:title] %>::&nbsp;<%= f[:title] %><% end %>
+                <span class="file-title">
+                  <%= f[:title].present? ? f[:title] : f[:id] %>
+                </span>
               </a>
+              <span class="file-id">(<%= f[:id] %>)</span>
             </dt>
           <% end %>
         <% end %>
