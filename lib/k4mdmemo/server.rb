@@ -118,7 +118,10 @@ module K4mdmemo
         end
         dat
       end
-      @files.sort!{|a, b| b[:id] <=> a[:id] }
+      @files.sort!{|a, b| a[:id] <=> b[:id] }
+      if ['1',1,'on','yes'].include?(request.params['reverse'])
+        @files.reverse!
+      end
 
       src = File.read(make_template_path("index.html.erb"))
       erb = ERB.new(src)
