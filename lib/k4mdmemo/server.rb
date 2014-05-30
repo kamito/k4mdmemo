@@ -118,7 +118,7 @@ module K4mdmemo
         end
         dat
       end
-      @files.sort!{|a, b| a[:id] <=> b[:id] }
+      @files.sort!{|a, b| b[:id] <=> a[:id] }
 
       src = File.read(make_template_path("index.html.erb"))
       erb = ERB.new(src)
