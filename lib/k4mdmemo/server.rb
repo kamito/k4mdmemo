@@ -63,6 +63,17 @@ module K4mdmemo
       "/(.*)(\..*)?" => :get_show,
     }
 
+    MIME_TYPES = {
+      '.png'  => "image/png",
+      '.jpg'  => "image/jpeg",
+      '.jpeg' => "image/jpeg",
+      '.gif'  => "image/gif",
+      '.js'   => "application/javascript",
+      '.html' => "text/html",
+      '.css'  => "text/css",
+      '.txt'  => "text/plain"
+    }
+
 
     def initialize(app=nil)
       @app = app
@@ -135,7 +146,12 @@ module K4mdmemo
     # @return [Rack::Response]
     def get_show(request, matched=nil)
       file_id = matched[1]
-      filename = "#{file_id}.md"
+      filepath = File.join(Dir.pwd, file_id)
+      if File.exists?(filepath) and not FileTest.directory?(filepath) and not file_id =~ /.*\.md$/
+        return origin_content(filepath)
+      end
+
+      filename = file_id =~ /.*\.md$/ ? file_id : "#{file_id}.md"
       filepath = File.join(Dir.pwd, filename)
 
       # Return 404 response when file not found.
@@ -174,6 +190,23 @@ module K4mdmemo
       md = ::Redcarpet::Markdown.new(renderer, extensions)
       html = md.render(src)
       return html
+    end
+
+
+    # Response original content.
+    # @param [String] filepath File path.
+    # @return [Rack::Response]
+    def origin_content(filepath)
+      content = File.read(filepath)
+      ext = File.extname(filepath)
+      content_type = MIME_TYPES[ext.to_s] || "application/octet-stream"
+
+      response = Rack::Response.new do |r|
+        r.status = 200
+        r['Content-Type'] = content_type
+        r.write(content)
+      end
+      return response
     end
 
 
